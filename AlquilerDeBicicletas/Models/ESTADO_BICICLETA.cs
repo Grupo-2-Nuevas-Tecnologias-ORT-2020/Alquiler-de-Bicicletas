@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace AlquilerDeBicicletas.Models
 {
-    public enum EstadoBicicleta
+    public enum ESTADO_BICICLETA
     {
-
+        FINALIZADO,
+        PAGO_PENDIENTE,
+        RESERVADO,
+        EN_CURSO
     }
 }

@@ -15,8 +15,5 @@ namespace AlquilerDeBicicletas.Models
         public string nombre { get; set; }
         public double precio { get; set; }
 
-
-
-
     }
 }

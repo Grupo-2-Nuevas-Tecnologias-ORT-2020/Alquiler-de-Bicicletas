@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace AlquilerDeBicicletas.Models
 {
-    public enum TipoDePago
+    public enum TIPO_DE_PAGO
     {
-
+        TARJETA_DE_DEBITO,
+        TARJETA_DE_CREDITO,
+        EFECTIVO,
+        MERCADO_PAGO
     }
 }

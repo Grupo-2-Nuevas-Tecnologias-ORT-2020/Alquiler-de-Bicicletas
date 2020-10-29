@@ -12,5 +12,9 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //TODO
+        /*
+         * 
+         */
     }
 }

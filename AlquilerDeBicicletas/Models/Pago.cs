@@ -11,5 +11,14 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //TODO 
+        /*
+         * idPago int
+         * idAlquiler int
+         * fechaDePago Date
+         * monto double
+         * formaDePago TIPO_DE_PAGO
+         * esPagoBase boolean
+         */
     }
 }

@@ -16,8 +16,5 @@ namespace AlquilerDeBicicletas.Models
         public TipoDeBici tipoDeBici { get; set; }
         public DateTime fechaDeIngreso { get; set; }
         public string color { get; set; }
-
-
-
     }
 }

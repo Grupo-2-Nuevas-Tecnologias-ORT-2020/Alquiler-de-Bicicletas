@@ -11,8 +11,13 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID Tipo de Bici")]
         public int idTipoDeBici { get; set; }
+
+        [Display(Name = "Nombre")]
         public string nombre { get; set; }
+
+        [Display(Name = "Precio")]
         public double precio { get; set; }
 
     }

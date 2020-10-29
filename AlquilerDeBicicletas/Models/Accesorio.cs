@@ -11,9 +11,17 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "ID Accesorio")]
         public int idAccesorio { get; set; }
-        public TipoDeAccesorio tipoDeAccesorio { get; set; }
+
+        [Display(Name = "Tipo de Accesorio")]
+        //Este atributo es una clave foránea a la tabla TipoDeAccesorio
+        public int idTipoDeAccesorio { get; set; }
+
+        [Display(Name = "Fecha de Ingreso")] 
         public DateTime fechaDeIngreso { get; set; }
+
+        [Display(Name = "Color")]
         public string color { get; set; }
     }
 }

@@ -11,14 +11,15 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //TODO
-        /*
-         * idAlquilerDeAccesorio int
-         * idAlquiler int
-         * idAccesorio int
-         */
+        [Display(Name = "ID Alquiler de Accesorio")]
         public int idAlquilerDeAccesorio { get; set; }
+
+        [Display(Name = "ID Alquiler")]
+        //Este atributo es una clave foránea a la tabla Alquiler
         public int idAlquiler { get; set; }
+
+        [Display(Name = "ID Accesorio")]
+        //Este atributo es una clave foránea a la tabla Accesorio
         public int idAccesorio { get; set; }
     }
 }

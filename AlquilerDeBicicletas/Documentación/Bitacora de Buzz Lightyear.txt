@@ -1,8 +1,8 @@
 ﻿28/10/2020
 Completar atributos para:
-	- Alquiler
-	- AlquilerDeAccesorios
-	- Pago
+	- Alquiler (Hecho)
+	- AlquilerDeAccesorios (Hecho)
+	- Pago (Hecho)
 
 Completar con los display para el Entity:
 	- Todas las clases

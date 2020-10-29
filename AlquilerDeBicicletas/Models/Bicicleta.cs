@@ -8,6 +8,8 @@ namespace AlquilerDeBicicletas.Models
 {
     public class Bicicleta
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idBicicleta { get; set; }
         public TipoDeBici tipoDeBici { get; set; }
         public DateTime fechaDeIngreso { get; set; }

@@ -7,6 +7,8 @@ namespace AlquilerDeBicicletas.Models
 {
     public class Usuario
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idUsuario { get; set; }
         public String nombre { get; set; }
         public String apellido { get; set; }

@@ -7,7 +7,8 @@ namespace AlquilerDeBicicletas.Models
 {
     public class TipoDeBici
     {
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int idTipoDeBici { get; set; }
         public string nombre { get; set; }
         public double precio { get; set; }

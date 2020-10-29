@@ -7,5 +7,7 @@ namespace AlquilerDeBicicletas.Models
 {
     public class Pago
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     }
 }

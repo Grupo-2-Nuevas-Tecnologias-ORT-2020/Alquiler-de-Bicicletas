@@ -11,5 +11,9 @@ namespace AlquilerDeBicicletas.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int idAccesorio { get; set; }
+        public TipoDeAccesorio tipoDeAccesorio { get; set; }
+        public DateTime fechaDeIngreso { get; set; }
+        public string color { get; set; }
     }
 }

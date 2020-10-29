@@ -20,5 +20,6 @@ namespace AlquilerDeBicicletas.Models
          * formaDePago TIPO_DE_PAGO
          * esPagoBase boolean
          */
+        public string BORRAR_ESTA_PROPIEDAD { get; set; }
     }
 }

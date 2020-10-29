@@ -17,5 +17,6 @@ namespace AlquilerDeBicicletas.Models
          * idAlquiler int
          * idAccesorio int
          */
+        public string BORRAR_ESTA_PROPIEDAD { get; set; }
     }
 }

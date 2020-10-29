@@ -16,5 +16,6 @@ namespace AlquilerDeBicicletas.Models
         /*
          * 
          */
+        public string BORRAR_ESTA_PROPIEDAD { get; set; }
     }
 }

@@ -18,3 +18,4 @@ Nico:	Agregué los display a todos los campos, deberíamos chequear que este bie
 		Agregué también un comentario "//Este atributo es una clave foránea a la tabla <<tabla>>" en cada FK
 		Le deberiamos consultar al profe lo de las FK y para proteger el campo "contraseña" en Usuario
 
+

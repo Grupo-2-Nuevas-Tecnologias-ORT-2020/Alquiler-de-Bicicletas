@@ -16,9 +16,6 @@ namespace AlquilerDeBicicletas
         {
             CreateWebHostBuilder(args).Build().Run();
         }
-        //comentario hola soy alan
-
-        //ola soy eze
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)

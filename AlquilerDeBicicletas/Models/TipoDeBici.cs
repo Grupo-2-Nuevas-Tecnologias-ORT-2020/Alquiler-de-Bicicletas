@@ -5,8 +5,15 @@ using System.Threading.Tasks;
 
 namespace AlquilerDeBicicletas.Models
 {
-    public enum TipoDeBici
+    public class TipoDeBici
     {
-        
-}
+
+        public int idTipoDeBici { get; set; }
+        public string nombre { get; set; }
+        public double precio { get; set; }
+
+
+
+
+    }
 }

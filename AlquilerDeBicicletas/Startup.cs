@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using AlquilerDeBicicletas.Context;
+using Newtonsoft.Json;
 
 namespace AlquilerDeBicicletas
 {
@@ -31,8 +34,10 @@ namespace AlquilerDeBicicletas
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<AlquilerDeBicisDatabseContext>(options => options.UseSqlServer(Configuration["ConnectionString:AlquilerDeBicisDBConnection"]));
+            services.AddMvc()
+                .AddJsonOptions(options =>options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

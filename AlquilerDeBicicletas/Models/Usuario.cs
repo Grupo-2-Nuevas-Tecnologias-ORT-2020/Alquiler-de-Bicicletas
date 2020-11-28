@@ -12,7 +12,7 @@ namespace AlquilerDeBicicletas.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID Usuario")]
-        public int idUsuario { get; set; }
+        public int usuarioID { get; set; }
 
         [Display(Name = "Nombre")]
         public String nombre { get; set; }
@@ -31,5 +31,45 @@ namespace AlquilerDeBicicletas.Models
 
         [Display(Name = "Contraseña")]
         public String contrasena { get; set; }
+        //Va a guardar la contraseña encriptada
+  
+        
+        
+        /*
+        string text = "NiSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1232348726347239432°°!°!!!!!++´+´+}____co";
+        string EncryptionCode = Encryption.Encrypt(text);
+        string DecryptCode = Encryption.Decrypt(EncryptionCode);
+
+        Console.WriteLine("Texto plano: " + text);
+            Console.WriteLine("Texto encriptado: " + EncryptionCode);
+            Console.WriteLine("Texto tesencriptado: " + DecryptCode);
+
+            if (text == DecryptCode)
+            {
+                Console.WriteLine("dale boca");
+
+            }
+            else
+            {
+                Console.WriteLine("Nuestros padres son primos");
+            }
+*/        
+        
+        /* No usamos esto
+        // the mapped-to-column property 
+        protected virtual string PasswordStored
+        {
+            get;
+            set;
+        }
+
+        [NotMapped]
+        public string Password
+        {
+            get { return Decrypt(PasswordStored); }
+            set { PasswordStored = Encrypt(value); }
+        }*/
+
+
     }
 }

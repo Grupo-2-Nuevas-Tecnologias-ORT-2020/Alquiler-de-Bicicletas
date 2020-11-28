@@ -13,15 +13,7 @@ namespace AlquilerDeBicicletas.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID Alquiler")]
-        public int idAlquiler { get; set; }
-
-        //Este atributo es una clave foránea a la tabla Usuario
-        [Display(Name = "ID Usuario")]
-        public int idUsuario { get; set; }
-
-        //Este atributo es una clave foránea a la tabla Bicicleta
-        [Display(Name = "ID Bicicleta")]
-        public int idBicicleta { get; set; }
+        public int alquilerID { get; set; }
 
         [Display(Name = "Estado del Alquiler")]
         public ESTADO_BICICLETA estadoAlquiler { get; set; }
@@ -49,5 +41,16 @@ namespace AlquilerDeBicicletas.Models
 
         [Display(Name = "Total a pagar extras")]
         public double totalAPagarExtra { get; set; }
+
+
+
+
+        //Este atributo es una clave foránea a la tabla Usuario
+        [Display(Name = "Usuario")]
+        public int usuario { get; set; }
+
+        //Este atributo es una clave foránea a la tabla Bicicleta
+        [Display(Name = "Bicicleta")]
+        public int bicicleta { get; set; }
     }
 }

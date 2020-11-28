@@ -9,6 +9,8 @@ namespace AlquilerDeBicicletas.Models
 {
     public class AlquilerDeAccesorio
     {
+        //This class will be deprecated
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID Alquiler de Accesorio")]

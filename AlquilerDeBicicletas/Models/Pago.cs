@@ -12,11 +12,8 @@ namespace AlquilerDeBicicletas.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID Pago")]
-        public int idPago{ get; set; }
+        public int pagoID { get; set; }
 
-        //Este atributo es una clave foránea a la tabla Alquiler
-        [Display(Name = "ID Alquiler")]
-        public int idAlquiler { get; set; }
 
         [Display(Name = "Fecha de Pago")]
         public DateTime fechaDePago{ get; set; }
@@ -30,5 +27,10 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Es pago base")]
         public bool esPagoBase { get; set; }
 
+
+
+        //Este atributo es una clave foránea a la tabla Alquiler
+        [Display(Name = "Alquiler")]
+        public int alquiler { get; set; }
     }
 }

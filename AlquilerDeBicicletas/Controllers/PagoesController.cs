@@ -48,8 +48,10 @@ namespace AlquilerDeBicicletas.Controllers
         // GET: Pagoes/Create
         public IActionResult Create()
         {
+            //Agregado enum de forma de pago
             //ViewData["alquilerID"] = new SelectList(_context.Alquileres, "alquilerID", "alquilerID");
-                        
+
+
             ViewData["formaDePago"] = Enum.GetValues(typeof(TIPO_DE_PAGO))
                    .Cast<TIPO_DE_PAGO>()
                    .Select(e => new SelectListItem

@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="formaDePago" class="control-label"></label>
-                <select asp-for="formaDePago" class="form-control"></select>
+                <select asp-for="formaDePago" class="form-control" asp-items="ViewBag.formaDePago"></select>
                 <span asp-validation-for="formaDePago" class="text-danger"></span>
             </div>
             <div class="form-group">

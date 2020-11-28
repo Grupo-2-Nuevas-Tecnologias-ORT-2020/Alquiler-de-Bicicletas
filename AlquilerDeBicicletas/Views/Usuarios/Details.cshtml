@@ -1,0 +1,54 @@
+﻿@model AlquilerDeBicicletas.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.apellido)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.dni)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.dni)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.eMail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.eMail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaNacimiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechaNacimiento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.contrasena)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.contrasena)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.usuarioID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -22,15 +22,17 @@ namespace AlquilerDeBicicletas.Models
         public double monto{ get; set; }
 
         [Display(Name = "Forma de pago")]
+        [EnumDataType(typeof(TIPO_DE_PAGO))]
         public TIPO_DE_PAGO formaDePago { get; set; }
 
         [Display(Name = "Es pago base")]
         public bool esPagoBase { get; set; }
 
+        //Estos atributos relacionan Pago con Alquiler
+        [Display(Name = "ID Alquiler")]
+        public Nullable<int> alquilerID { get; set; }
 
-
-        //Este atributo es una clave foránea a la tabla Alquiler
         [Display(Name = "Alquiler")]
-        public int alquiler { get; set; }
+        public virtual Alquiler alquiler { get; set; }
     }
 }

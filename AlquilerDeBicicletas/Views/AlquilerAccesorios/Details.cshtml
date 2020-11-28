@@ -1,0 +1,30 @@
+﻿@model AlquilerDeBicicletas.Models.AlquilerAccesorio
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AlquilerAccesorio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.alquiler)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.alquiler.alquilerID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.accesorio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.accesorio.accesorioID)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

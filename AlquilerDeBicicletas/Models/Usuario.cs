@@ -29,12 +29,14 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Fecha de Nacimiento")]
         public DateTime fechaNacimiento { get; set; }
 
+        //Va a guardar la contraseña encriptada
         [Display(Name = "Contraseña")]
         public String contrasena { get; set; }
-        //Va a guardar la contraseña encriptada
-  
-        
-        
+
+        //Este atributo relaciona Usuario con Alquiler
+        [Display(Name = "Alquileres")]
+        public virtual ICollection<Alquiler> alquileres { get; set; }
+
         /*
         string text = "NiSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS1232348726347239432°°!°!!!!!++´+´+}____co";
         string EncryptionCode = Encryption.Encrypt(text);
@@ -53,8 +55,8 @@ namespace AlquilerDeBicicletas.Models
             {
                 Console.WriteLine("Nuestros padres son primos");
             }
-*/        
-        
+*/
+
         /* No usamos esto
         // the mapped-to-column property 
         protected virtual string PasswordStored

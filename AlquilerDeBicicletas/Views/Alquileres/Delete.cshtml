@@ -1,0 +1,87 @@
+﻿@model AlquilerDeBicicletas.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Alquiler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoAlquiler)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.estadoAlquiler)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaDesde)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechaDesde)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaHasta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechaHasta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.cambioFecha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.cambioFecha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.horasBase)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.horasBase)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEntregaFinal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fechaEntregaFinal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.horasExtras)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.horasExtras)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.totalAPagarBase)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.totalAPagarBase)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.totalAPagarExtra)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.totalAPagarExtra)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.usuario.usuarioID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.bicicleta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.bicicleta.bicicletaID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="alquilerID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

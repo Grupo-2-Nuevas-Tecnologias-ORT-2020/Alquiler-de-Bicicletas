@@ -5,6 +5,14 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Newtonsoft.Json;
+
+using Newtonsoft.Json.Serialization;
+using System.Reflection;
+
+
 
 namespace AlquilerDeBicicletas.Models
 {
@@ -16,7 +24,8 @@ namespace AlquilerDeBicicletas.Models
         public int alquilerID { get; set; }
 
         [Display(Name = "Estado del Alquiler")]
-        public ESTADO_BICICLETA estadoAlquiler { get; set; }
+        [EnumDataType(typeof(ESTADO_ALQUILER))]
+        public ESTADO_ALQUILER estadoAlquiler { get; set; }
 
         [Display(Name = "Inicio de Alquiler")]
         public DateTime fechaDesde { get; set; }
@@ -42,15 +51,31 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Total a pagar extras")]
         public double totalAPagarExtra { get; set; }
 
+        //Estos atributos relacionan Alquiler con Usuario
+        [Display(Name = "ID Usuario")]
+        public Nullable<int> usuarioID { get; set; }
 
-
-
-        //Este atributo es una clave foránea a la tabla Usuario
         [Display(Name = "Usuario")]
-        public int usuario { get; set; }
+        public virtual Usuario usuario { get; set; }
 
-        //Este atributo es una clave foránea a la tabla Bicicleta
+        //Estos atributos relacionan Alquiler con Bicicleta
+        [Display(Name = "ID Bicicleta")]
+        public Nullable<int> bicicletaID { get; set; }
+
         [Display(Name = "Bicicleta")]
-        public int bicicleta { get; set; }
+        public virtual Bicicleta bicicleta { get; set; }
+
+        //Este atributo relaciona Alquiler con Pago
+        [Display(Name = "Pagos")]
+        public virtual ICollection<Pago> pagos { get; set; }
+
+        
+        //Estos atributos relacionan Alquiler con Accesorio
+        [JsonIgnore]
+        public virtual ICollection<AlquilerAccesorio> accesoriosAlquiler { get; } = new HashSet<AlquilerAccesorio>();
+        [NotMapped]
+        public IList<Accesorio> accesorios => accesoriosAlquiler.Select(alac => alac.accesorio).ToList();
+         
+         
     }
 }

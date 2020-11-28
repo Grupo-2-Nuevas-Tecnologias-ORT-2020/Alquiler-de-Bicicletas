@@ -18,4 +18,11 @@ Nico:	Agregué los display a todos los campos, deberíamos chequear que este bie
 		Agregué también un comentario "//Este atributo es una clave foránea a la tabla <<tabla>>" en cada FK
 		Le deberiamos consultar al profe lo de las FK y para proteger el campo "contraseña" en Usuario
 
+--------------------------------------------------------------------------------------
+28/11/2020
+Nico: Modelo de datos armado y relaciones entre entidades corregidas y creadas.
+		https://entityframeworkcore.com/es/knowledge-base/46349747/-ef-----------------
+		https://www.thereformedprogrammer.net/updating-many-to-many-relationships-in-entity-framework-core/
+		https://stackoverflow.com/questions/35638727/create-a-dropdown-list-from-model-using-enum-and-entity-framework-scaffolding
+
 

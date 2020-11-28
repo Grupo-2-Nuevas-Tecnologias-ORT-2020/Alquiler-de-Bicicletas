@@ -20,7 +20,8 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Precio")]
         public double precioBase { get; set; }
 
-        public ICollection<Bicicleta> Bicicletas { get; set; }
+        [Display(Name = "Bicicletas del tipo")]
+        public virtual ICollection<Bicicleta> bicicletas { get; set; }
 
     }
 }

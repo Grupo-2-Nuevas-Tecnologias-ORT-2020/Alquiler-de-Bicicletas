@@ -5,10 +5,18 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Newtonsoft.Json;
+
+using Newtonsoft.Json.Serialization;
+using System.Reflection;
+
 namespace AlquilerDeBicicletas.Models
 {
     public class Accesorio
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID Accesorio")]
@@ -20,11 +28,18 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Color")]
         public string color { get; set; }
 
-
+        //Estos atributos relacionan Accesorio con TipoDeAccesorio
+        [Display(Name = "Tipo de Accesorio ID")]
+        public Nullable<int> tipoDeAccesorioID { get; set; }
 
         [Display(Name = "Tipo de Accesorio")]
-        //Este atributo es una clave foránea a la tabla TipoDeAccesorio
-        public int tipoDeAccesorioID { get; set; }
-        public TipoDeAccesorio tipoDeAccesorio { get; set; }
+        public virtual TipoDeAccesorio tipoDeAccesorio { get; set; }
+
+        //Estos atributos relacionan Alquiler con Accesorio
+        [JsonIgnore]
+        public virtual ICollection<AlquilerAccesorio> alquileresAccesorio { get; } = new HashSet<AlquilerAccesorio>();
+        [NotMapped]
+        public IList<Alquiler> alquileres => alquileresAccesorio.Select(alac => alac.alquiler).ToList();
+
     }
 }

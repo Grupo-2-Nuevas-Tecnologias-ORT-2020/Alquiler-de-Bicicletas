@@ -1,0 +1,83 @@
+﻿@model AlquilerDeBicicletas.Models.Alquiler
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Alquiler</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="estadoAlquiler" class="control-label"></label>
+                <select asp-for="estadoAlquiler" class="form-control" asp-items="ViewBag.estadoAlquiler"></select>
+                <span asp-validation-for="estadoAlquiler" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaDesde" class="control-label"></label>
+                <input asp-for="fechaDesde" class="form-control" />
+                <span asp-validation-for="fechaDesde" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaHasta" class="control-label"></label>
+                <input asp-for="fechaHasta" class="form-control" />
+                <span asp-validation-for="fechaHasta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="cambioFecha" /> @Html.DisplayNameFor(model => model.cambioFecha)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="horasBase" class="control-label"></label>
+                <input asp-for="horasBase" class="form-control" />
+                <span asp-validation-for="horasBase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaEntregaFinal" class="control-label"></label>
+                <input asp-for="fechaEntregaFinal" class="form-control" />
+                <span asp-validation-for="fechaEntregaFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="horasExtras" class="control-label"></label>
+                <input asp-for="horasExtras" class="form-control" />
+                <span asp-validation-for="horasExtras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="totalAPagarBase" class="control-label"></label>
+                <input asp-for="totalAPagarBase" class="form-control" />
+                <span asp-validation-for="totalAPagarBase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="totalAPagarExtra" class="control-label"></label>
+                <input asp-for="totalAPagarExtra" class="form-control" />
+                <span asp-validation-for="totalAPagarExtra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="usuarioID" class="control-label"></label>
+                <select asp-for="usuarioID" class ="form-control" asp-items="ViewBag.usuarioID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="bicicletaID" class="control-label"></label>
+                <select asp-for="bicicletaID" class ="form-control" asp-items="ViewBag.bicicletaID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -24,6 +24,7 @@ namespace AlquilerDeBicicletas.Models
 
         [Display(Name = "Tipo de Accesorio")]
         //Este atributo es una clave foránea a la tabla TipoDeAccesorio
-        public int tipoDeAccesorio { get; set; }
+        public int tipoDeAccesorioID { get; set; }
+        public TipoDeAccesorio tipoDeAccesorio { get; set; }
     }
 }

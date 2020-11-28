@@ -48,7 +48,15 @@ namespace AlquilerDeBicicletas.Controllers
         // GET: Pagoes/Create
         public IActionResult Create()
         {
-            ViewData["alquilerID"] = new SelectList(_context.Alquileres, "alquilerID", "alquilerID");
+            //ViewData["alquilerID"] = new SelectList(_context.Alquileres, "alquilerID", "alquilerID");
+                        
+            ViewData["formaDePago"] = Enum.GetValues(typeof(TIPO_DE_PAGO))
+                   .Cast<TIPO_DE_PAGO>()
+                   .Select(e => new SelectListItem
+                   {
+                       Value = e.ToString(),
+                       Text = e.ToString()
+                   });
             return View();
         }
 
@@ -65,6 +73,13 @@ namespace AlquilerDeBicicletas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["formaDePago"] = Enum.GetValues(typeof(TIPO_DE_PAGO))
+                   .Cast<TIPO_DE_PAGO>()
+                   .Select(e => new SelectListItem
+                   {
+                       Value = e.ToString(),
+                       Text = e.ToString()
+                   });
             ViewData["alquilerID"] = new SelectList(_context.Alquileres, "alquilerID", "alquilerID", pago.alquilerID);
             return View(pago);
         }
@@ -118,6 +133,13 @@ namespace AlquilerDeBicicletas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["formaDePago"] = Enum.GetValues(typeof(TIPO_DE_PAGO))
+                   .Cast<TIPO_DE_PAGO>()
+                   .Select(e => new SelectListItem
+                   {
+                       Value = e.ToString(),
+                       Text = e.ToString()
+                   });
             ViewData["alquilerID"] = new SelectList(_context.Alquileres, "alquilerID", "alquilerID", pago.alquilerID);
             return View(pago);
         }

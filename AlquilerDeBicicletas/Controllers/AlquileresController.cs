@@ -46,6 +46,7 @@ namespace AlquilerDeBicicletas.Controllers
             return View(alquiler);
         }
 
+        // Cuando se carga la pagina con el formulario de creación
         // GET: Alquileres/Create
         public IActionResult Create()
         {
@@ -99,13 +100,13 @@ namespace AlquilerDeBicicletas.Controllers
             {
                 return NotFound();
             }
-            ViewData["estadoAlquiler"] = Enum.GetValues(typeof(ESTADO_ALQUILER))
+            ViewData["estadoAlquiler"] = (Enum.GetValues(typeof(ESTADO_ALQUILER))
                     .Cast<ESTADO_ALQUILER>()
                     .Select(e => new SelectListItem
                     {
                         Value = e.ToString(),
                         Text = e.ToString()
-                    });
+                    }));
             ViewData["bicicletaID"] = new SelectList(_context.Bicicletas, "bicicletaID", "bicicletaID", alquiler.bicicletaID);
             ViewData["usuarioID"] = new SelectList(_context.Usuarios, "usuarioID", "usuarioID", alquiler.usuarioID);
             return View(alquiler);

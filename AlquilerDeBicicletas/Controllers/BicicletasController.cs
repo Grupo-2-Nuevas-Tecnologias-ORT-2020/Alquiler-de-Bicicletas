@@ -48,7 +48,7 @@ namespace AlquilerDeBicicletas.Controllers
         // GET: Bicicletas/Create
         public IActionResult Create()
         {
-            ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
+            ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "tipoDeBiciID");
             return View();
         }
 

@@ -58,7 +58,7 @@ namespace AlquilerDeBicicletas.Controllers
                         Text = e.ToString()
                     });
             ViewData["bicicletaID"] = new SelectList(_context.Bicicletas, "bicicletaID", "bicicletaID");
-            ViewData["usuarioID"] = new SelectList(_context.Usuarios, "usuarioID", "nombre");
+            ViewData["usuarioID"] = new SelectList(_context.Usuarios, "usuarioID", "usuarioID");
             return View();
         }
 

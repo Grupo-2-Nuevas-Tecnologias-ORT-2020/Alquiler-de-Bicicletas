@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AlquilerDeBicicletas.Context;
 using AlquilerDeBicicletas.Models;
+using AlquilerDeBicicletas.Security;
 
 namespace AlquilerDeBicicletas.Controllers
 {
@@ -58,7 +59,8 @@ namespace AlquilerDeBicicletas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(usuario);
+                usuario.contrasena = Encryption.Encrypt(usuario.contrasena);
+               _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

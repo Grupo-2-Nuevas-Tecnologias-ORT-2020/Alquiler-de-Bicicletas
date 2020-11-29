@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AlquilerDeBicicletas.Security;
 
 namespace AlquilerDeBicicletas.Models
 {
@@ -32,10 +31,8 @@ namespace AlquilerDeBicicletas.Models
 
         //Va a guardar la contraseña encriptada
         [Display(Name = "Contraseña")]
-        public String contrasena {
-            get { return contrasena; }
-            set { contrasena = Encryption.Encrypt(value); }
-        }
+        public String contrasena { get; set; }
+        
 
         //Este atributo relaciona Usuario con Alquiler
         [Display(Name = "Alquileres")]

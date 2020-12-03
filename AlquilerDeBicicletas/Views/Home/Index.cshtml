@@ -92,3 +92,61 @@
         </ul>
     </div>
 </div>
+
+@model IEnumerable<AlquilerDeBicicletas.Models.Bicicleta>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("tipoDeBici")
+        <input type="submit" value="Search" />
+    </p>
+}
+@using (Html.BeginForm())
+{
+    <label class="control-label">Filtro</label>
+    <select class="form-control" name="tipoDeBici" asp-items="ViewBag.tipoDeBiciID">
+        <option value="">Pick one</option>
+    </select>
+    <input type="submit" value="Search" />
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaDeIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tipoDeBici)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaDeIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoDeBici.nombre)
+                </td>
+                <td>
+                    <a asp-controller="Bicicletas" asp-action="Edit" asp-route-id="@item.bicicletaID">Edit</a> |
+                    <a asp-controller="Bicicletas" asp-action="Details" asp-route-id="@item.bicicletaID">Details</a> |
+                    <a asp-controller="Bicicletas" asp-action="Delete" asp-route-id="@item.bicicletaID">Delete</a> |
+                    <a asp-controller="Alquileres" asp-action="Create" asp-route-id="@item.bicicletaID">Alquilar Ya</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

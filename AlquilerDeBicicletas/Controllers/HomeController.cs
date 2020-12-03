@@ -30,18 +30,9 @@ namespace AlquilerDeBicicletas.Controllers
 
             if (tipoDeBici != 0)
             {
+                //https://docs.microsoft.com/es-es/ef/ef6/querying/related-data
                 alquilerDeBicisDatabseContext = _context.TiposDeBici.Where(tp => tp.tipoDeBiciID == tipoDeBici).ToListAsync();
-
             }
-
-            /*
-            ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
-            var alquilerDeBicisDatabseContext = _context.TiposDeBici.to;
-
-            if (tipoDeBici != 0)
-            {   //https://docs.microsoft.com/es-es/ef/ef6/querying/related-data
-                alquilerDeBicisDatabseContext = _context.TiposDeBici.Where(tp => tp.tipoDeBiciID == tipoDeBici);//.Include(b => b.tipoDeBiciID);
-            }*/
             return View(await alquilerDeBicisDatabseContext);
         }
 

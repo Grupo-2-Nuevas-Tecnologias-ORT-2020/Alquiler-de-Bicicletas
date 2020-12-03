@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AlquilerDeBicicletas.Context;
 using AlquilerDeBicicletas.Models;
 
-namespace AlquilerDeBicicletas
+namespace AlquilerDeBicicletas.Controllers
 {
     public class TipoDeBicisController : Controller
     {
@@ -54,7 +54,7 @@ namespace AlquilerDeBicicletas
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("tipoDeBiciID,nombre,precioBase,descripcion")] TipoDeBici tipoDeBici)
+        public async Task<IActionResult> Create([Bind("tipoDeBiciID,nombre,precioBase")] TipoDeBici tipoDeBici)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace AlquilerDeBicicletas
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("tipoDeBiciID,nombre,precioBase,descripcion")] TipoDeBici tipoDeBici)
+        public async Task<IActionResult> Edit(int id, [Bind("tipoDeBiciID,nombre,precioBase")] TipoDeBici tipoDeBici)
         {
             if (id != tipoDeBici.tipoDeBiciID)
             {

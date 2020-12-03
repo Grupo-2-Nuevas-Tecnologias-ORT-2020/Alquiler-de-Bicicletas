@@ -93,36 +93,32 @@
     </div>
 </div>
 
-@model IEnumerable<AlquilerDeBicicletas.Models.Bicicleta>
+<!-- @@model IEnumerable<AlquilerDeBicicletas.Models.Bicicleta> -->
+
+@model IEnumerable<AlquilerDeBicicletas.Models.TipoDeBici>
 
 @using (Html.BeginForm())
 {
-    <p>
-        Find by name: @Html.TextBox("tipoDeBici")
-        <input type="submit" value="Search" />
-    </p>
-}
-@using (Html.BeginForm())
-{
-    <label class="control-label">Filtro</label>
-    <select class="form-control" name="tipoDeBici" asp-items="ViewBag.tipoDeBiciID">
+    <label>Filtro</label>
+    <select name="tipoDeBici" asp-items="ViewBag.tipoDeBiciID">
         <option value="">Pick one</option>
     </select>
     <input type="submit" value="Search" />
 }
 
 
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.fechaDeIngreso)
+                @Html.DisplayNameFor(model => model.nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.color)
+                @Html.DisplayNameFor(model => model.precioBase)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.tipoDeBici)
+                @Html.DisplayNameFor(model => model.descripcion)
             </th>
             <th></th>
         </tr>
@@ -132,19 +128,27 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fechaDeIngreso)
+                    @Html.DisplayFor(modelItem => item.nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.color)
+                    @Html.DisplayFor(modelItem => item.precioBase)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.tipoDeBici.nombre)
+                    @Html.DisplayFor(modelItem => item.descripcion)
                 </td>
                 <td>
-                    <a asp-controller="Bicicletas" asp-action="Edit" asp-route-id="@item.bicicletaID">Edit</a> |
-                    <a asp-controller="Bicicletas" asp-action="Details" asp-route-id="@item.bicicletaID">Details</a> |
-                    <a asp-controller="Bicicletas" asp-action="Delete" asp-route-id="@item.bicicletaID">Delete</a> |
-                    <a asp-controller="Alquileres" asp-action="Create" asp-route-id="@item.bicicletaID">Alquilar Ya</a>
+                    @{
+                        string dir = item.nombre + ".jpg";
+                    }
+                    <a asp-controller="Alquileres" asp-action="Create" asp-route-id="">
+                        <img src="~/images/@dir" class="img-responsive" />
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="TipoDeBicis" asp-action="Edit" asp-route-id="@item.tipoDeBiciID">Edit</a> |
+                    <a asp-controller="TipoDeBicis" asp-action="Details" asp-route-id="@item.tipoDeBiciID">Details</a> |
+                    <a asp-controller="TipoDeBicis" asp-action="Delete" asp-route-id="@item.tipoDeBiciID">Delete</a> |
+                    <a asp-controller="Alquileres" asp-action="Create" asp-route-id="">Alquilar Ya</a>
                 </td>
             </tr>
         }

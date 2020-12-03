@@ -8,6 +8,9 @@ using AlquilerDeBicicletas.Models;
 using AlquilerDeBicicletas.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.IO;
+
+using System.Drawing;
 
 namespace AlquilerDeBicicletas.Controllers
 {
@@ -19,17 +22,29 @@ namespace AlquilerDeBicicletas.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index(int tipoDeBici)
         {
             ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
-            var alquilerDeBicisDatabseContext = _context.Bicicletas.Include(b => b.tipoDeBici);
+            var alquilerDeBicisDatabseContext = _context.TiposDeBici.ToListAsync();
+
+            if (tipoDeBici != 0)
+            {
+                alquilerDeBicisDatabseContext = _context.TiposDeBici.Where(tp => tp.tipoDeBiciID == tipoDeBici).ToListAsync();
+
+            }
+
+            /*
+            ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
+            var alquilerDeBicisDatabseContext = _context.TiposDeBici.to;
 
             if (tipoDeBici != 0)
             {   //https://docs.microsoft.com/es-es/ef/ef6/querying/related-data
-                alquilerDeBicisDatabseContext = _context.Bicicletas.Where(b => b.tipoDeBici.tipoDeBiciID == tipoDeBici).Include(b => b.tipoDeBici);
-            }
-            return View(await alquilerDeBicisDatabseContext.ToListAsync());
+                alquilerDeBicisDatabseContext = _context.TiposDeBici.Where(tp => tp.tipoDeBiciID == tipoDeBici);//.Include(b => b.tipoDeBiciID);
+            }*/
+            return View(await alquilerDeBicisDatabseContext);
         }
+
         //public async Task<IActionResult> Filtrar(TipoDeBici tipoDeBici)
         //{
             

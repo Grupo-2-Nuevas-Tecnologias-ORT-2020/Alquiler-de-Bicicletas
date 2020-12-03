@@ -4,14 +4,16 @@ using AlquilerDeBicicletas.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlquilerDeBicicletas.Migrations
 {
     [DbContext(typeof(AlquilerDeBicisDatabseContext))]
-    partial class AlquilerDeBicisDatabseContextModelSnapshot : ModelSnapshot
+    [Migration("20201203012901_ImagenesYdescripcion")]
+    partial class ImagenesYdescripcion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,6 +138,9 @@ namespace AlquilerDeBicicletas.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("image");
+
                     b.Property<string>("nombre");
 
                     b.Property<double>("precioBase");
@@ -152,6 +157,9 @@ namespace AlquilerDeBicicletas.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("descripcion");
+
+                    b.Property<byte[]>("imagen")
+                        .HasColumnType("image");
 
                     b.Property<string>("nombre");
 

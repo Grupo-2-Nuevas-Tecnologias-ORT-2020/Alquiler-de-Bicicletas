@@ -4,14 +4,16 @@ using AlquilerDeBicicletas.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AlquilerDeBicicletas.Migrations
 {
     [DbContext(typeof(AlquilerDeBicisDatabseContext))]
-    partial class AlquilerDeBicisDatabseContextModelSnapshot : ModelSnapshot
+    [Migration("20201203040745_ImagenesYdescripcion_V2")]
+    partial class ImagenesYdescripcion_V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

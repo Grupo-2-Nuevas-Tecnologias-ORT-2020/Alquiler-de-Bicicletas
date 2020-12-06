@@ -1,0 +1,175 @@
+body{
+  	background-image: url("images/banner.jpeg");
+  	background-size: cover;
+  	background-repeat: no-repeat;
+}
+
+.grid{
+	display: grid;
+  	padding: 10px;
+  	grid-gap: 5px;
+  	font-family: Arial;
+}
+
+.grid.cabecera{
+	grid-template-areas: "imagen . home carta about contact";
+  	background-color: rgba(13, 13, 0, 0.7);
+ 	-webkit-border-radius: 9px;
+}
+
+.logo{
+	grid-area: imagen;
+	place-self: center;
+}
+
+.logo img{
+	height: 200px;
+	vertical-align: middle;
+}
+
+.menu.home{ grid-area: home }
+.menu.carta{ grid-area: carta }
+.menu.about{ grid-area: about }
+.menu.contact{ grid-area: contact }
+
+.menu{
+	place-self: center;
+	text-align: center;
+	background-image: url("images/fondomenu.png");
+  	padding: 25px;
+  	padding-top: 17px;
+  	padding-bottom: 17px;
+ 	-webkit-border-radius: 9px;
+}
+
+.menu a {
+  color: lightgrey;
+  font-size: 35px;
+}
+
+.menu a:hover {
+  color: #efb810;
+}
+
+.grid.especial{
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas: ". . ";
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 25px;
+	-webkit-border-radius: 9px;
+  	background-color: rgba(13, 13, 0, 0.7);
+}
+
+.especialdeldia img{
+	-webkit-border-radius: 9px;
+	height: 500px;
+	text-align: center;
+	place-self: center;
+
+}
+
+.ofertaespecial{
+	background-image: url("images/fondoespecial.jpg");
+	background-size:cover;
+  	background-repeat: no-repeat;
+	-webkit-border-radius: 9px;
+	text-align: center;
+	place-self: center;
+}
+
+.grid.especial h2{
+	font-size: 200%;
+	text-align: center;
+	color: #efb810;
+}
+
+.grid.especial h3{
+	margin: 30px;
+	font-size: 120%;
+	text-align: center;
+	color: #efb810;
+}
+
+.grid.especial h4{
+	font-size: 300%;
+	text-align: center;
+	color: #efb810;
+}
+
+.grid.carta{
+	grid:auto/1fr 1fr 1fr ;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 25px;
+	-webkit-border-radius: 9px;
+  	background-color: rgba(13, 13, 0, 0.7);
+  	place-self: center
+}
+
+.carta img{
+	height:240px;
+	-webkit-border-radius: 9px;
+	margin-left: auto;
+    margin-right: auto;
+    object-fit: cover
+
+}
+
+.carta h2{
+	color: #efb810;
+}
+
+.plato{
+	text-align: center;
+	place-self: center;
+}
+
+.grid.about{
+	grid: auto/1fr 1fr 1fr;
+	background-color: rgba(239, 184, 16, 0.7);
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 25px;
+	-webkit-border-radius: 9px;
+	text-align: center;
+}
+#about img{
+	width: 200px;
+}
+
+.grid.footer{
+
+	grid:auto/1fr 1fr ;
+	background-image: url(images/footer.jpg);
+  	/*background-size: cover;*/
+	text-align: center;
+}
+
+#red{
+
+	text-align: left;
+	padding-right: 40px;
+	padding-top: 25px;
+
+}
+
+#footer h2{
+	color: white;
+	font-size: 250%;
+}
+
+#footer h4{
+	color: white;
+}
+
+#footer img{
+	float: right;
+	padding: 20px;
+	width: 70px;
+	-webkit-border-radius: 40px;
+}
+
+.designedBy{
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

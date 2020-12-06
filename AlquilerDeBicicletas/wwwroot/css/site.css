@@ -35,3 +35,75 @@ body {
         display: none;
     }
 }
+
+.bici {
+    text-align: center;
+    /*place-self: center;*/
+    -webkit-border-radius: 9px;
+    background-color: rgba(13, 13, 0, 0.7);
+    color: mintcream;
+}
+
+.grid {
+    display: grid;
+    padding: 10px;
+    grid-gap: 5px;
+    font-family: Arial;
+}
+
+    .grid.catalogo {
+        grid: auto/1fr 1fr 1fr;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 25px;
+        -webkit-border-radius: 9px;
+        background-color: rgba(13, 13, 0, 0.7);
+        place-self: center;
+    }
+
+    .grid.about {
+        grid: auto/1fr 1fr 1fr;
+        /*background-color: rgba(239, 184, 16, 0.7);*/
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 25px;
+        -webkit-border-radius: 9px;
+        text-align: center;
+    }
+
+#about img {
+    width: 200px;
+}
+
+.grid.footer {
+    grid: auto/1fr 1fr;
+    background-image: url(~/images/footer.jpg);
+    /*background-size: cover;*/
+    text-align: center;
+}
+
+#red {
+    text-align: left;
+    padding-right: 40px;
+    padding-top: 25px;
+}
+
+#footer h2 {
+    color: white;
+    font-size: 250%;
+}
+
+#footer h4 {
+    color: white;
+}
+
+#footer img {
+    float: right;
+    padding: 20px;
+    width: 100px;
+    -webkit-border-radius: 40px;
+}
+
+.designedBy {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}

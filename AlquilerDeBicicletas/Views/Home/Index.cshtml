@@ -41,25 +41,17 @@
 
             @using (Html.BeginForm())
             {
+                List<TipoDeBici> biciList = ViewData["tipoDeBiciList"] as List<TipoDeBici>;
+
                 <div class="btn-group btn-group-justified" role="group">
-                    @foreach (var item in Model)
-                    {
-                        <div class="btn-group" role="group">
-                            <button class="btn btn-default" value="@item.tipoDeBiciID" onclick="">
-
-                                @Html.DisplayFor(modelItem => item.nombre)
-                            </button>
-                        </div>
-
-                    }
+                    @for (int i = 0; i < biciList.Count(); i++){
+                            <div class="btn-group" role="group">
+                                <button name="tipoDeBici" class="btn btn-default" value="@biciList[i].tipoDeBiciID">
+                                    @Html.DisplayFor(x => biciList[i].nombre)
+                                </button>
+                            </div>
+                     }
                 </div>
-                <!--
-            <label>Filtro</label>
-            <select name="tipoDeBici" asp-items="ViewBag.tipoDeBiciID">
-                <option value="">Pick one</option>
-            </select>
-            -->
-                <input class="invisible" id="enviar" type="submit" value="Search" />
             }
 
 

@@ -25,6 +25,9 @@ namespace AlquilerDeBicicletas.Controllers
 
         public async Task<IActionResult> Index(int tipoDeBici)
         {
+            ViewData["tipoDeBiciList"] = _context.TiposDeBici.ToList();
+
+
             ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
             var alquilerDeBicisDatabseContext = _context.TiposDeBici.ToListAsync();
 

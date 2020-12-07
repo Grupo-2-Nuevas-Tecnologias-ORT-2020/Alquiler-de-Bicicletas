@@ -31,6 +31,7 @@ namespace AlquilerDeBicicletas.Controllers
 
             foreach(var tipo in _context.TiposDeBici)
             {
+                //consulta compleja a tabla de alquileres
                 cantidades.Add(_context.Bicicletas.Where(b => b.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID).Count() != 0);
             }
             

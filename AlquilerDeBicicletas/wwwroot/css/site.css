@@ -77,7 +77,7 @@ body {
 
 .grid.footer {
     grid: auto/1fr 1fr;
-    background-image: url(~/images/footer.jpg);
+    background-image: url(../images/footer.jpg);
     /*background-size: cover;*/
     text-align: center;
 }
@@ -89,12 +89,12 @@ body {
 }
 
 #footer h2 {
-    color: white;
+    color: black;
     font-size: 250%;
 }
 
 #footer h4 {
-    color: white;
+    color: black;
 }
 
 #footer img {
@@ -106,4 +106,16 @@ body {
 
 .designedBy {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.bici {
+    -webkit-box-shadow: 0px 0px 20px rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 20px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 20px rgba(0,0,0,.8);
+}
+
+.centrado {
+    top: 50%;
+    left: 50%;
+    transform: translate(0, -700%);
 }

@@ -27,6 +27,17 @@ namespace AlquilerDeBicicletas.Controllers
         {
             ViewData["tipoDeBiciList"] = await _context.TiposDeBici.ToListAsync();
 
+            List<bool> cantidades = new List<bool>();
+
+            foreach(var tipo in _context.TiposDeBici)
+            {
+                cantidades.Add(_context.Bicicletas.Where(b => b.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID).Count() != 0);
+            }
+            
+            ViewData["tipoDeBiciAvailable"] = cantidades;
+            
+
+
 
             ViewData["tipoDeBiciID"] = new SelectList(_context.TiposDeBici, "tipoDeBiciID", "nombre");
             var alquilerDeBicisDatabseContext = _context.TiposDeBici.ToListAsync();

@@ -42,39 +42,65 @@
     {
         List<TipoDeBici> biciList = ViewData["tipoDeBiciList"] as List<TipoDeBici>;
 
-    <div class="btn-group btn-group-justified" role="group">
-        <div class="btn-group" role="group">
-            <button name="tipoDeBici" class="btn btn-success" value="0">
-                <h4>Mostrar todos</h4>
-            </button>
-        </div>
-        @for (int i = 0; i < biciList.Count(); i++)
-        {
+        <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
-                <button name="tipoDeBici" class="btn btn-info" value="@biciList[i].tipoDeBiciID">
-                    <h4>@Html.DisplayFor(x => biciList[i].nombre)</h4>
-                    
+                <button name="tipoDeBici" class="btn btn-success" value="0">
+                    <h4>Mostrar todos</h4>
                 </button>
             </div>
-        }
-    </div>
+            @for (int i = 0; i < biciList.Count(); i++)
+            {
+                <div class="btn-group" role="group">
+                    <button name="tipoDeBici" class="btn btn-info" value="@biciList[i].tipoDeBiciID">
+                        <h4>@Html.DisplayFor(x => biciList[i].nombre)</h4>
+
+                    </button>
+                </div>
+            }
+        </div>
     }
 
-
     <div class="grid catalogo">
+        @{ List<bool> tipoDeBiciAvailable = ViewData["tipoDeBiciAvailable"] as List<bool>; }
+
         @foreach (var item in Model)
         {
-            <div class="bici">
-                @{
-                    string dir = item.nombre + ".jpg";
-                }
-                <a asp-controller="Alquileres" asp-action="Create" asp-route-id="">
-                    <img src="~/images/@dir" class="img-responsive" />
-                </a>
-                <h3 class="nombreBici">@Html.DisplayFor(modelItem => item.nombre)</h3>
-                <p class="precioBici">$@Html.DisplayFor(modelItem => item.precioBase) base c/hora</p>
-                <p class="descripcionBici">@Html.DisplayFor(modelItem => item.descripcion)</p>
-            </div>
+
+            string clase;
+            if (tipoDeBiciAvailable[item.tipoDeBiciID - 1])
+            {
+                clase = "disponible";
+            }
+            else
+            {
+                clase = "noDisponible";
+            }
+
+        <div class="bici @clase">
+            @{
+                string dir = item.nombre + ".jpg";
+            }
+            <a id="@clase@item.tipoDeBiciID" asp-controller="Alquileres" asp-action="Create" asp-route-id=@item.tipoDeBiciID>
+                <img src="~/images/@dir" class="img-responsive" />
+                <div class="centrado">
+                    @{
+                        string mensaje = "";
+                        if (clase == "noDisponible")
+                        {
+                            mensaje = "SIN STOCK";
+                        }
+                        <img src="@mensaje" />
+                        <p>@mensaje</p>
+                    }
+                </div>
+            </a>
+            <h3 class="nombreBici">@Html.DisplayFor(modelItem => item.nombre)</h3>
+            <p class="precioBici">$@Html.DisplayFor(modelItem => item.precioBase) base p/hora</p>
+            <p class="descripcionBici">@Html.DisplayFor(modelItem => item.descripcion)</p>
+            <script>
+                document.querySelector('#noDisponible'+@item.tipoDeBiciID).removeAttribute('href');
+            </script>
+        </div>
         }
     </div>
 

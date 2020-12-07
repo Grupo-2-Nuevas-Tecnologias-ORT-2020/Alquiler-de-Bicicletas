@@ -48,7 +48,7 @@ namespace AlquilerDeBicicletas.Controllers
 
         // Cuando se carga la pagina con el formulario de creación
         // GET: Alquileres/Create
-        public IActionResult Create()
+        public IActionResult Create(int? tipoDeBiciID)
         {
             ViewData["estadoAlquiler"] = Enum.GetValues(typeof(ESTADO_ALQUILER))
                     .Cast<ESTADO_ALQUILER>()

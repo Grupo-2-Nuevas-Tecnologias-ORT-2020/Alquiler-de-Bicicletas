@@ -52,10 +52,14 @@ namespace AlquilerDeBicicletas
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //
+            app.UseAuthentication();
+            //
+
 
             app.UseMvc(routes =>
             {

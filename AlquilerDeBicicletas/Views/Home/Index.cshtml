@@ -83,7 +83,7 @@
 
 
 
-                <a id="@clase@item.tipoDeBiciID" asp-controller="Alquileres" asp-action="Create" value="@item.tipoDeBiciID">
+                <a id="@clase@item.tipoDeBiciID" asp-controller="Alquileres" asp-action="Create" asp-route-id="@item.tipoDeBiciID">
                     <div class="arribaDe">
                         @{if (clase == "noDisponible"){
                                 <img  src="~/images/agotado.png" class="img-responsive " />

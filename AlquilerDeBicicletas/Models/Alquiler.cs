@@ -53,7 +53,7 @@ namespace AlquilerDeBicicletas.Models
 
         //Estos atributos relacionan Alquiler con Usuario
         [Display(Name = "ID Usuario")]
-        public Nullable<int> usuarioID { get; set; }
+        public String usuarioID { get; set; }
 
         [Display(Name = "Usuario")]
         public virtual Usuario usuario { get; set; }

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AlquilerDeBicicletas.Context;
 using AlquilerDeBicicletas.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace AlquilerDeBicicletas.Controllers
 {
@@ -48,19 +50,20 @@ namespace AlquilerDeBicicletas.Controllers
 
         // Cuando se carga la pagina con el formulario de creación
         // GET: Alquileres/Create
-        public IActionResult Create(int? tipoDeBiciID)
+        public IActionResult Create(int? id)
         {
 
-            Console.WriteLine("HOLAMAMAAAA"  + tipoDeBiciID);
-            ViewData["estadoAlquiler"] = Enum.GetValues(typeof(ESTADO_ALQUILER))
-                    .Cast<ESTADO_ALQUILER>()
-                    .Select(e => new SelectListItem
-                    {
-                        Value = e.ToString(),
-                        Text = e.ToString()
-                    });
-            ViewData["bicicletaID"] = new SelectList(_context.Bicicletas, "bicicletaID", "bicicletaID");
-            ViewData["usuarioID"] = new SelectList(_context.Usuarios, "usuarioID", "nombre");
+            Console.WriteLine("HOLAMAMAAAA"  + id);
+
+            Bicicleta act = (from bici in _context.Bicicletas
+                             where bici.tipoDeBiciID
+                                   == id
+                             select bici).First();
+
+            ViewData["estadoAlquiler"] = ESTADO_ALQUILER.RESERVADO;
+            ViewData["bicicletaID"] = act.bicicletaID;
+            ViewData["usuarioID"] = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["tipoDeBici"] = _context.TiposDeBici.Find(id).nombre;
             return View();
         }
 
@@ -71,6 +74,9 @@ namespace AlquilerDeBicicletas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("alquilerID,estadoAlquiler,fechaDesde,fechaHasta,cambioFecha,horasBase,fechaEntregaFinal,horasExtras,totalAPagarBase,totalAPagarExtra,usuarioID,bicicletaID")] Alquiler alquiler)
         {
+            alquiler.estadoAlquiler = ESTADO_ALQUILER.RESERVADO;
+            alquiler.usuarioID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             if (ModelState.IsValid)
             {
                 _context.Add(alquiler);

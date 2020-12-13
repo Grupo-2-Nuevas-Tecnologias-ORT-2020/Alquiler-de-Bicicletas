@@ -50,6 +50,8 @@ namespace AlquilerDeBicicletas.Controllers
         // GET: Alquileres/Create
         public IActionResult Create(int? tipoDeBiciID)
         {
+
+            Console.WriteLine("HOLAMAMAAAA"  + tipoDeBiciID);
             ViewData["estadoAlquiler"] = Enum.GetValues(typeof(ESTADO_ALQUILER))
                     .Cast<ESTADO_ALQUILER>()
                     .Select(e => new SelectListItem

@@ -23,10 +23,6 @@ namespace AlquilerDeBicicletas.Areas.Identity.Data
         public String dni { get; set; }
 
         [PersonalData]
-        [Display(Name = "E-Mail")]
-        public String eMailAdress { get; set; }
-
-        [PersonalData]
         [Display(Name = "Fecha de Nacimiento")]
         public DateTime fechaNacimiento { get; set; }
 

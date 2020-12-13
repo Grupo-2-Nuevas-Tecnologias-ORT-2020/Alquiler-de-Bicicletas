@@ -1,4 +1,8 @@
-﻿@model AlquilerDeBicicletas.Models.Alquiler
+﻿@using Microsoft.AspNetCore.Identity
+@using AlquilerDeBicicletas.Areas.Identity.Data
+@inject SignInManager<AlquilerDeBicicletasUsers> SignInManager
+@inject UserManager<AlquilerDeBicicletasUsers> UserManager
+@model AlquilerDeBicicletas.Models.Alquiler
 
 @{
     ViewData["Title"] = "Create";
@@ -61,11 +65,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="usuarioID" class="control-label"></label>
-                <select asp-for="usuarioID" class ="form-control" asp-items="ViewBag.usuarioID"></select>
+                <select asp-for="usuarioID" class="form-control" asp-items="ViewBag.usuarioID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="bicicletaID" class="control-label"></label>
-                <select asp-for="bicicletaID" class ="form-control" asp-items="ViewBag.bicicletaID"></select>
+                <select asp-for="bicicletaID" class="form-control" asp-items="ViewBag.bicicletaID"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

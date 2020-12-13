@@ -34,7 +34,7 @@ namespace AlquilerDeBicicletas
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<AlquilerDeBicisDatabseContext>(options => options.UseSqlServer(Configuration["ConnectionString:AlquilerDeBicisDBConnection"]));
+            services.AddDbContext<AlquilerDeBicisDatabseContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:AlquilerDeBicisDBConnection"]));
             services.AddMvc()
                 .AddJsonOptions(options =>options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

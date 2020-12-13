@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Alquilá tu bici!";
 }
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2500">
@@ -80,7 +80,10 @@
                 @{
                     string dir = item.nombre + ".jpg";
                 }
-                <a id="@clase@item.tipoDeBiciID" asp-controller="Alquileres" asp-action="Create" asp-route-id=@item.tipoDeBiciID>
+
+
+
+                <a id="@clase@item.tipoDeBiciID" asp-controller="Alquileres" asp-action="Create" value="@item.tipoDeBiciID">
                     <div class="arribaDe">
                         @{if (clase == "noDisponible"){
                                 <img  src="~/images/agotado.png" class="img-responsive " />
@@ -91,14 +94,7 @@
                 <h3 class="nombreBici">@Html.DisplayFor(modelItem => item.nombre)</h3>
                 <p class="precioBici">$@Html.DisplayFor(modelItem => item.precioBase) base p/hora</p>
                 <p class="descripcionBici">@Html.DisplayFor(modelItem => item.descripcion)</p>
-                <script>
-                    try {
-                        document.querySelector('#noDisponible' +@item.tipoDeBiciID).removeAttribute('href');
-                    } catch (error)
-                    {
-
-                    }
-                </script>
+                <script>try{document.querySelector('#noDisponible' +@item.tipoDeBiciID).removeAttribute('href');} catch (error){}</script>
             </div>
         }
     </div>

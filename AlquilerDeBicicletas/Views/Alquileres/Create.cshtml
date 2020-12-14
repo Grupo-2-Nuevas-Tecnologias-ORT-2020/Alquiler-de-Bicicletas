@@ -113,8 +113,9 @@
                 <input asp-for="fechaEntregaFinal" class="form-control hidden" value="@DateTime.Now.AddHours(-6000).ToString("yyyy-MM-ddTHH:mm")" />
                 <span asp-validation-for="fechaEntregaFinal" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <input asp-for="totalAPagarBase" class="form-control hidden" value="-1" />
+                <input asp-for="totalAPagarBase" class="form-control hidden" value="@tipoDeBiciView.precioBase" />
                 <span asp-validation-for="totalAPagarBase" class="text-danger"></span>
             </div>
 
@@ -129,7 +130,6 @@
                 <span asp-validation-for="fechaHasta" class="text-danger"></span>
             </div>
 
-            <input asp-for="totalAPagarBase" class="hidden" value="calcularTotal()" />
             <div>
                 <a class="btn btn-info " onclick="calcularTotal()">Calcular Total</a>
                 <input type="submit" value="Alquilar" class="btn btn-success" />
@@ -185,6 +185,7 @@
                         console.log("Total a pagar: " + totalAPagar);
 
                         document.getElementById("montoAPagar").textContent = "Monto: $" + totalAPagar;
+                        document.getElementById("totalAPagarBase").value = totalAPagar;
                     }
                     return totalAPagar;
 

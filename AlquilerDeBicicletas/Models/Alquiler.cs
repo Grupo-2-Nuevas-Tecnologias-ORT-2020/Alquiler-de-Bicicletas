@@ -44,7 +44,7 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "Horas extras")]
         public int horasExtras { get; set; }
         
-        [Display(Name = "Total a pagar estipulado")]
+        [Display(Name = "Total a pagar")]
         public double totalAPagarBase { get; set; }
 
         [Display(Name = "Total a pagar extras")]

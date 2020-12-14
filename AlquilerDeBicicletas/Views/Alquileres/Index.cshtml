@@ -6,9 +6,6 @@
 
 <h2>Historial</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <!--<div class="card">
     <div class="card-body">-->
         @*<p>
@@ -50,8 +47,8 @@
 @foreach (var item in Model)
 {
     String dir = item.bicicleta.tipoDeBici.nombre + ".jpg";
-<div  style="border-style: solid; background-color:aquamarine">
-    <img src="~/images/@dir" class="pull-right img-responsive" style="max-height:175px;padding: 15px;" />
+<div class="container-fluid" style="border-style: solid; background-color:#4cbcd2">
+    <img src="~/images/@dir" class="pull-right img-responsive" style="max-height:225px; padding: 5px;" />
     <div class="card-body " style="margin: auto; padding: 15px;">
         <p>
             @Html.DisplayNameFor(model => model.estadoAlquiler):
@@ -78,7 +75,7 @@
             @Html.DisplayFor(modelItem => item.horasExtras)
         </td>*@
         <p>
-            @Html.DisplayNameFor(model => model.totalAPagarBase):
+            @Html.DisplayNameFor(model => model.totalAPagarBase): $
             @Html.DisplayFor(modelItem => item.totalAPagarBase)
         </p>
         @*<td>
@@ -92,6 +89,7 @@
             @Html.DisplayFor(modelItem => item.bicicleta.tipoDeBici.nombre)
         </p>
 
+        <a asp-action="Edit" asp-route-id="@item.alquilerID" class="btn btn-success">Pagar</a>
         @*<p>
             <a asp-action="Edit" asp-route-id="@item.alquilerID">Edit</a> |
             <a asp-action="Details" asp-route-id="@item.alquilerID">Details</a> |

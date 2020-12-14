@@ -31,8 +31,54 @@ namespace AlquilerDeBicicletas.Controllers
 
             foreach(var tipo in _context.TiposDeBici)
             {
-                //consulta compleja a tabla de alquileres
-                cantidades.Add(_context.Bicicletas.Where(b => b.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID).Count() != 0);
+                //borrar var nom
+                //var nom = tipo.nombre;
+                //si hay más de una bici en el galpón
+                var bicicletasDelTipo = _context.Bicicletas.Where(b => b.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID);
+                bool hayBicis = bicicletasDelTipo.Count() != 0;
+
+                var alquileresDeTipo = _context.Alquileres.Where(a => a.bicicleta.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID);
+                
+                bool disponible = false;
+                
+                if (hayBicis)
+                {
+                    if(alquileresDeTipo.Count() != 0)
+                    {
+                        int i = 0;
+                        while (!disponible && i < bicicletasDelTipo.Count())
+                        {
+                            var biciID = bicicletasDelTipo.ToList().ElementAt(i).bicicletaID;
+                            disponible = alquileresDeTipo.Where(a => a.bicicletaID == biciID).All(a => a.estadoAlquiler == ESTADO_ALQUILER.FINALIZADO);
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        disponible = true;
+                    }
+                    
+                }
+                cantidades.Add(disponible);
+
+                /*Console.WriteLine("Atencion " + nom);
+                Console.WriteLine("hayBicis: " + hayBicis);
+                Console.WriteLine("disponible: " + disponible);
+                Console.WriteLine("Gracias");*/
+
+                /*var du
+                 * select *
+                 * from alquileres as a
+                 * where
+                 * a.bicicleta.tipoDeBici.tipoDeBiciID == tipo.tipoDeBiciID and
+                 * a.
+                 * 
+                 */
+
+
+
+                //.Count() != 0);
+
             }
             
             ViewData["tipoDeBiciAvailable"] = cantidades;

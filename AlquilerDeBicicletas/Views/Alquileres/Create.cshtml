@@ -1,80 +1,204 @@
 ﻿@model AlquilerDeBicicletas.Models.Alquiler
 
 @{
-    ViewData["Title"] = "Create";
+    List<TipoDeAccesorio> accList = ViewData["accessoriosList"] as List<TipoDeAccesorio>;
+    TipoDeBici tipoDeBiciView = ViewData["tipoDeBici"] as TipoDeBici;
+    string biciElegida = "";
+    ViewData["Title"] = "Alquila tu bici";
+    if (tipoDeBiciView != null)
+    {
+        biciElegida = tipoDeBiciView.nombre + ".jpg"; ;
+        ViewData["Title"] = "Alquila tu " + tipoDeBiciView.nombre;
+    }
+    else
+    {
+        tipoDeBiciView = new TipoDeBici();
+        tipoDeBiciView.precioBase = 9999969;
+    }
+
+    if (accList == null)
+    {
+        accList = new List<TipoDeAccesorio>();
+        accList.Add(new TipoDeAccesorio());
+    }
 }
+<script>
+    var accList = [];
+</script>
 
-<h2>Create</h2>
 
-<h4>Alquiler</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <h2>Accesorios</h2>
+            <div class="row">
+                @{
+                    var contador = -1;
+                    List<bool> accesoriosUsados = new List<bool>();
+                    foreach (var item in accList)
+                    {
+                        contador++;
+                        accesoriosUsados.Add(false);
+                        string dic = item.nombre + ".jpg";
+                        string chkID = "chk" + contador;
+                        string imgID = "img" + contador;
+                        var fname = "cambioEstado" + chkID + "()";
+                        //each element in tipoDeAccesorios
+                        <div class="col-md-3">
+                            <input type="checkbox" value="@contador" id="@chkID" class="hidden" name="accesoriosUsados">
+                            <label class="" for="@chkID" onclick="@fname; calcularTotal();">
+                                <div class="arribaDe" id="@imgID" style="display:none;">
+                                    <img src="~/images/ok.png" class="img-responsive" />
+                                </div>
+                                <img src="~/images/Accesorios/@dic" class="img-responsive" />
+                                <p>@item.nombre</p>
+                            </label>
+                        </div>
+                        <script>
+                            accList.push(@item.precioBase);
+
+                            function @fname {
+                                //console.log('Hola juan);
+                                //style="display:none;"
+                                var @chkID = document.querySelector('#@chkID');
+                                var @imgID = document.getElementById("@imgID");
+                                var state = @chkID;
+                                var smnt;
+                                //console.log(state.value);
+                                if (state.checked) {
+                                    //smnt = @chkID;
+                                    //smnt.setAttribute('value', 'false');
+                                    @{accesoriosUsados[contador] = false;}
+                                    console.log('Ahora es false');
+                                    smnt = @imgID;
+                                    smnt.style.display = 'none';
+                                } else {
+                                    //smnt = @chkID;
+                                    //smnt.setAttribute('value', 'true');
+                                    @{accesoriosUsados[contador] = true;}
+                                    console.log('Ahora es true');
+                                    smnt = @imgID;
+                                    smnt.style.display = 'block';
+                                }
+                            }
+                        </script>
+                    }
+                }
+            </div>
+            @*
+        - Fecha dia y hora: desde hasta
+        - Calculo de pago
+        - Seleccionar forma de pago
+        - Boton pagar (genera alquiler y alquilerAccesorios y pago)
+            *@
+        <div class="row">
+
             <div class="form-group">
-                <label asp-for="estadoAlquiler" class="control-label"></label>
-                <span class="form-control" form-control"">@ViewBag.estadoAlquiler</span>
+                <input asp-for="estadoAlquiler" class="form-control hidden" value="@ViewBag.estadoAlquiler" />
             </div>
             <div class="form-group">
+                <input asp-for="AlquilerDeBicicletasUsers_ID" class="form-control hidden" value="@ViewBag.usuarioID" />
+            </div>
+            <div class="form-group">
+                <input asp-for="bicicletaID" class="form-control hidden" value="@ViewBag.bicicletaID" />
+            </div>
+
+
+            <div class="form-group">
+                <input asp-for="horasBase" class="form-control hidden" value="-1" />
+                <span asp-validation-for="horasBase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="fechaEntregaFinal" class="form-control hidden" value="@DateTime.Now.AddHours(-6000).ToString("yyyy-MM-ddTHH:mm")" />
+                <span asp-validation-for="fechaEntregaFinal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="totalAPagarBase" class="form-control hidden" value="-1" />
+                <span asp-validation-for="totalAPagarBase" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="fechaDesde" class="control-label"></label>
-                <input asp-for="fechaDesde" class="form-control" />
+                <input asp-for="fechaDesde" class="form-control" onkeydown="calcularTotal()" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
                 <span asp-validation-for="fechaDesde" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="fechaHasta" class="control-label"></label>
-                <input asp-for="fechaHasta" class="form-control" />
+                <input asp-for="fechaHasta" class="form-control" onkeydown="calcularTotal()" />
                 <span asp-validation-for="fechaHasta" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <div class="checkbox">
-                <label>
-                    <input asp-for="cambioFecha" /> @Html.DisplayNameFor(model => model.cambioFecha)
-                </label>
+
+            <input asp-for="totalAPagarBase" class="hidden" value="calcularTotal()" />
+            <div>
+                <a class="btn btn-info " onclick="calcularTotal()">Calcular Total</a>
+                <input type="submit" value="Alquilar" class="btn btn-success" />
+                <h3 id="montoAPagar" class="h3">Monto: $@tipoDeBiciView.precioBase</h3>
+
             </div>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="horasBase" class="control-label"></label>
-                <input asp-for="horasBase" class="form-control" />
-                <span asp-validation-for="horasBase" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="fechaEntregaFinal" class="control-label"></label>
-                <input asp-for="fechaEntregaFinal" class="form-control" />
-                <span asp-validation-for="fechaEntregaFinal" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="horasExtras" class="control-label"></label>
-            <input asp-for="horasExtras" class="form-control" />
-            <span asp-validation-for="horasExtras" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="totalAPagarBase" class="control-label"></label>
-                <input asp-for="totalAPagarBase" class="form-control" />
-                <span asp-validation-for="totalAPagarBase" class="text-danger"></span>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="totalAPagarExtra" class="control-label"></label>
-            <input asp-for="totalAPagarExtra" class="form-control" />
-            <span asp-validation-for="totalAPagarExtra" class="text-danger"></span>
-        </div>*@
-            <div class="form-group">
-                <label asp-for="AlquilerDeBicicletasUsers_ID" class="control-label"></label>
-                <span class="form-control">@ViewBag.usuarioID</span>
-            </div>
-            <div class="form-group">
-                <label asp-for="bicicletaID" class="control-label"></label>
-                <span class="form-control">@ViewBag.bicicletaID</span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-            @{
-                String dir = ViewBag.tipoDeBici + ".jpg";
-            }
-            <img src="~/images/@dir" class="img-responsive" />
+        </div>
+
+
+            
+
+
+            <script>
+                /*function cambioEstado(idChk, idImg) {
+                    idChk.value = "#" + idChk.tex;
+                    var chkID = document.querySelector(idChk.value);
+                    var imgID = document.getElementById(idImg.value);
+                    console.log(chkID.value);
+                    if (chkID.value == 'true') {
+                        chkID.setAttribute('value', 'false');
+                        console.log('Ahora es false');
+                        imgID.style.display = 'none';
+                    } else {
+                        chkID.setAttribute('value', 'true');
+                        console.log('Ahora es true');
+                        imgID.style.display = 'block';
+                    }
+                }*/
+
+                function calcularTotal() {
+                    var totalAPagar = 0;
+                    var fdesde = new Date(document.getElementById("fechaDesde").value);
+                    var fhasta = new Date(document.getElementById("fechaHasta").value);
+                    var diffDias = fhasta - fdesde;
+                    var duracion = ((diffDias / 1000) / 60) / 60;
+
+                    //console.log(duracion + "Total a pagar antes: " + totalAPagar);
+                    //pago base por tipo de bici
+                    if (!isNaN(duracion)) {
+                        totalAPagar += duracion * @tipoDeBiciView.precioBase;
+
+                        console.log("Total a pagar2: " + totalAPagar);
+                        for (var i = 0; i < accList.length; i++) {
+
+                            var idEspecial = "chk" + i;
+                            if (document.getElementById(idEspecial).checked) {
+                                totalAPagar += duracion * accList[i];
+                            }
+                        }
+
+                        //console.log('calculo ' + fdesde + ' | ' + fhasta + ' | ' + diffDias + ' | ' + duracion);
+
+                        console.log("Total a pagar: " + totalAPagar);
+
+                        document.getElementById("montoAPagar").textContent = "Monto: $" + totalAPagar;
+                    }
+                    return totalAPagar;
+
+
+                }
+            </script>
         </form>
     </div>
+
+    <div class="col-md-6">
+        <img src="~/images/@biciElegida" alt="@biciElegida" class="img-responsive" />
+        <p>@tipoDeBiciView.descripcion</p>
+    </div>
+
 </div>
 
 <div>

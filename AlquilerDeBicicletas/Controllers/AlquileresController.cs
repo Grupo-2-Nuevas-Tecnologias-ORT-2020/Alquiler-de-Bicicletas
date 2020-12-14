@@ -23,7 +23,7 @@ namespace AlquilerDeBicicletas
         // GET: Alquileres
         public async Task<IActionResult> Index()
         {
-            var alquilerDeBicicletasContext = _context.Alquileres.Include(a => a.bicicleta).Include(u => u.AlquilerDeBicicletasUsers);
+            var alquilerDeBicicletasContext = _context.Alquileres.Include(a => a.bicicleta).Include(u => u.AlquilerDeBicicletasUsers).Include(t => t.bicicleta.tipoDeBici);
             return View(await alquilerDeBicicletasContext.ToListAsync());
         }
 
@@ -49,11 +49,11 @@ namespace AlquilerDeBicicletas
 
         // Cuando se carga la pagina con el formulario de creación
         // GET: Alquileres/Create
-        public IActionResult Create(int? id)
+        public  IActionResult Create(int? id)
         {
             if (User.FindFirstValue(ClaimTypes.NameIdentifier) == null)
             {
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Login", "Identity/Account");
             }
 
             Bicicleta act;
@@ -61,8 +61,7 @@ namespace AlquilerDeBicicletas
             try
             {
                 act = (from bici in _context.Bicicletas
-                       where bici.tipoDeBiciID
-                             == id
+                       where bici.tipoDeBiciID == id
                        select bici).First();
             }
             catch (InvalidOperationException e)
@@ -70,11 +69,31 @@ namespace AlquilerDeBicicletas
                 return NotFound();
             }
 
-            
+            List<bool> cantidades = new List<bool>();
+
+            foreach (var tipo in _context.TiposDeAccesorio)
+            {
+                //consulta compleja a tabla de alquileres
+                cantidades.Add(_context.Accesorios.Where(b => b.tipoDeAccesorioID == tipo.tipoDeAccesorioID).Count() != 0);
+            }
+
+
+            /*
+             * Se envía:
+             * - El estado como RESERVADO
+             * - El id de la bici del tipo elegido que se encontró disponible
+             * - El id del usuario que está loggeado
+             * - El objeto del tipo de bici elegida
+             * - La lista de accesorios para mostrarlos
+             * - La disponibilidad de dichos accesorios
+             */
+
             ViewData["estadoAlquiler"] = ESTADO_ALQUILER.RESERVADO;
             ViewData["bicicletaID"] = act.bicicletaID;
             ViewData["usuarioID"] = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ViewData["tipoDeBici"] = _context.TiposDeBici.Find(id).nombre;
+            ViewData["tipoDeBici"] = _context.TiposDeBici.Find(id);
+            ViewData["accessoriosList"] = _context.TiposDeAccesorio.ToList();
+            ViewData["accessoriosAvailable"] = cantidades;
 
             return View();
         }
@@ -84,8 +103,20 @@ namespace AlquilerDeBicicletas
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("alquilerID,estadoAlquiler,fechaDesde,fechaHasta,cambioFecha,horasBase,fechaEntregaFinal,horasExtras,totalAPagarBase,totalAPagarExtra,AlquilerDeBicicletasUsers_ID,bicicletaID")] Alquiler alquiler)
+        public async Task<IActionResult> Create([Bind("alquilerID,estadoAlquiler,fechaDesde,fechaHasta,cambioFecha,horasBase,fechaEntregaFinal,horasExtras,totalAPagarBase,totalAPagarExtra,AlquilerDeBicicletasUsers_ID,bicicletaID")] Alquiler alquiler, [Bind("accesoriosUsados")] List<string> accesoriosUsados)
         {
+            //[Bind("accesoriosSeleccionados")] 
+            var prueba = accesoriosUsados.ToList();
+            /*for(int i = 0; i < accesoriosUsados.Count(); i++)
+            {
+                Console.WriteLine("Valor " + accesoriosUsados.ToList()[i];
+            }*/
+
+            Console.WriteLine("Llegaron " + prueba.Count + " elementos");
+            foreach(var ac in prueba)
+            {
+                Console.WriteLine("Valor " + ac);
+            }
             alquiler.estadoAlquiler = ESTADO_ALQUILER.RESERVADO;
             alquiler.AlquilerDeBicicletasUsers_ID = User.FindFirstValue(ClaimTypes.NameIdentifier);
 

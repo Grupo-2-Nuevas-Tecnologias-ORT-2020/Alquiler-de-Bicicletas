@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace AlquilerDeBicicletas.Areas.Identity.Data
 {
     // Add profile data for application users by adding properties to the AlquilerDeBicicletasUsers class
@@ -26,10 +27,15 @@ namespace AlquilerDeBicicletas.Areas.Identity.Data
         [Display(Name = "Fecha de Nacimiento")]
         public DateTime fechaNacimiento { get; set; }
 
+        //Este atributo relaciona Usuario con Alquiler
+        [Display(Name = "Alquileres")]
+        public virtual ICollection<AlquilerDeBicicletas.Models.Alquiler> alquileres { get; set; }
+
+        /*
         //Va a guardar la contraseña encriptada
         [Display(Name = "Contraseña")]
         [PersonalData]
         [DataType(DataType.Password)]
-        public String contrasena { get; set; }
+        public String contrasena { get; set; }*/
     }
 }

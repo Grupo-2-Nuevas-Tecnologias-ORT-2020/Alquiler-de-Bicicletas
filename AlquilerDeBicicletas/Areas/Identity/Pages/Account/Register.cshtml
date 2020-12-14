@@ -1,5 +1,7 @@
 ﻿@page
 @model RegisterModel
+@inject SignInManager<AlquilerDeBicicletasUsers> SignInManager
+@inject UserManager<AlquilerDeBicicletasUsers> UserManager
 @{
     ViewData["Title"] = "Registrarse";
 }
@@ -18,20 +20,29 @@
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="col">
-
+                <div class="">
+                    <label asp-for="Input.Nombre"></label>
+                    <input asp-for="Input.Nombre" class="form-control" />
+                    <span asp-validation-for="Input.Nombre" class="text-danger"></span>
                 </div>
-                <div class="col">
-
+                <div class="">
+                    <label asp-for="Input.Apellido"></label>
+                    <input asp-for="Input.Apellido" class="form-control" />
+                    <span asp-validation-for="Input.Apellido" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Password">Contraseña</label>
+                <label asp-for="Input.DNI"></label>
+                <input asp-for="Input.DNI" class="form-control" />
+                <span asp-validation-for="Input.DNI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword">Confirmar Contraseña</label>
+                <label asp-for="Input.ConfirmPassword"></label>
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>

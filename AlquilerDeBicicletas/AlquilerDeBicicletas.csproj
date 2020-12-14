@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20201213210553_RelacionUsersAlquiler02a.cs" />
+    <Compile Remove="Migrations\20201213210553_RelacionUsersAlquiler02a.Designer.cs" />
+    <Compile Remove="Migrations\20201213211144_RelacionUsersAlquiler02a.cs" />
+    <Compile Remove="Migrations\20201213211144_RelacionUsersAlquiler02a.Designer.cs" />
+    <Compile Remove="Migrations\AlquilerDeBicicletas\20201213211200_RelacionUsersAlquiler02b.cs" />
+    <Compile Remove="Migrations\AlquilerDeBicicletas\20201213211200_RelacionUsersAlquiler02b.Designer.cs" />
+    <Compile Remove="Migrations\AlquilerDeBicicletas\20201213212827_RelacionUsersAlquiler02b.cs" />
+    <Compile Remove="Migrations\AlquilerDeBicicletas\20201213212827_RelacionUsersAlquiler02b.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Documentación\Deprecated classes-code\Alquileres viejo\AlquileresController.csasd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.1.6" />

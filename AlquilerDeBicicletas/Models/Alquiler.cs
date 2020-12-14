@@ -11,8 +11,7 @@ using Newtonsoft.Json;
 
 using Newtonsoft.Json.Serialization;
 using System.Reflection;
-
-
+using AlquilerDeBicicletas.Areas.Identity.Data;
 
 namespace AlquilerDeBicicletas.Models
 {
@@ -53,10 +52,10 @@ namespace AlquilerDeBicicletas.Models
 
         //Estos atributos relacionan Alquiler con Usuario
         [Display(Name = "ID Usuario")]
-        public String usuarioID { get; set; }
+        public String AlquilerDeBicicletasUsers_ID { get; set; }
 
         [Display(Name = "Usuario")]
-        public virtual Usuario usuario { get; set; }
+        public virtual AlquilerDeBicicletasUsers AlquilerDeBicicletasUsers { get; set; }
 
         //Estos atributos relacionan Alquiler con Bicicleta
         [Display(Name = "ID Bicicleta")]

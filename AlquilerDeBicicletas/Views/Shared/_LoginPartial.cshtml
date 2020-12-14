@@ -1,7 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using AlquilerDeBicicletas.Areas.Identity.Data
-@inject SignInManager<AlquilerDeBicicletasUsers> SignInManager
-@inject UserManager<AlquilerDeBicicletasUsers> UserManager
+﻿@using Microsoft.AspNetCore.Identity;
+@using AlquilerDeBicicletas.Areas.Identity.Data;
+@inject SignInManager<AlquilerDeBicicletasUsers> SignInManager;
+@inject UserManager<AlquilerDeBicicletasUsers> UserManager;
+
 
 @if (SignInManager.IsSignedIn(User))
 {

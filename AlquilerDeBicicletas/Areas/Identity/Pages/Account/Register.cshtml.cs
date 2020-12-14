@@ -48,13 +48,24 @@ namespace AlquilerDeBicicletas.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Constraseña")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Confirmar Contraseña")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "DNI")]
+            public string DNI { get; set; }
+
+            [Display(Name = "Nombre")]
+            public string Nombre { get; set; }
+
+            [Display(Name = "Apellido")]
+            public string Apellido { get; set; }
+
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -67,7 +78,15 @@ namespace AlquilerDeBicicletas.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new AlquilerDeBicicletasUsers { UserName = Input.Email, Email = Input.Email };
+                var user = new AlquilerDeBicicletasUsers
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    dni = Input.DNI,
+                    nombre = Input.Nombre,
+                    apellido = Input.Apellido
+                };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

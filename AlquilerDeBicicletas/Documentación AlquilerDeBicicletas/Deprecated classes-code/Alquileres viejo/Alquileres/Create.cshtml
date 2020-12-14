@@ -1,4 +1,8 @@
-﻿@model AlquilerDeBicicletas.Models.Alquiler
+﻿@using Microsoft.AspNetCore.Identity
+@using AlquilerDeBicicletas.Areas.Identity.Data
+@inject SignInManager<AlquilerDeBicicletasUsers> SignInManager
+@inject UserManager<AlquilerDeBicicletasUsers> UserManager
+@model AlquilerDeBicicletas.Models.Alquiler
 
 @{
     ViewData["Title"] = "Create";
@@ -59,7 +63,7 @@
             <span asp-validation-for="totalAPagarExtra" class="text-danger"></span>
         </div>*@
             <div class="form-group">
-                <label asp-for="AlquilerDeBicicletasUsers_ID" class="control-label"></label>
+                <label asp-for="usuarioID" class="control-label"></label>
                 <span class="form-control">@ViewBag.usuarioID</span>
             </div>
             <div class="form-group">
@@ -69,7 +73,7 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
-            @{
+            @{ 
                 String dir = ViewBag.tipoDeBici + ".jpg";
             }
             <img src="~/images/@dir" class="img-responsive" />
@@ -78,7 +82,7 @@
 </div>
 
 <div>
-    <!--<a asp-action="Index">Volver</a>-->
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

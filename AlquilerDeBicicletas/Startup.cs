@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using AlquilerDeBicicletas.Context;
 using Newtonsoft.Json;
+using AlquilerDeBicicletas.Data;
 
 namespace AlquilerDeBicicletas
 {
@@ -34,7 +34,7 @@ namespace AlquilerDeBicicletas
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<AlquilerDeBicisDatabseContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:AlquilerDeBicisDBConnection"]));
+            services.AddDbContext<AlquilerDeBicicletasContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:AlquilerDeBicisDBConnection"]));
             services.AddMvc()
                 .AddJsonOptions(options =>options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -54,10 +54,11 @@ namespace AlquilerDeBicicletas
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             //
-            app.UseAuthentication();
+            //app.UseAuthentication();
             //
 
 

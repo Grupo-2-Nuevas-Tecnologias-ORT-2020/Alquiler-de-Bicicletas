@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AlquilerDeBicicletas.Models;
-using AlquilerDeBicicletas.Context;
+using AlquilerDeBicicletas.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
@@ -16,9 +16,9 @@ namespace AlquilerDeBicicletas.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly AlquilerDeBicisDatabseContext _context;
+        private readonly AlquilerDeBicicletasContext _context;
 
-        public HomeController(AlquilerDeBicisDatabseContext context)
+        public HomeController(AlquilerDeBicicletasContext context)
         {
             _context = context;
         }

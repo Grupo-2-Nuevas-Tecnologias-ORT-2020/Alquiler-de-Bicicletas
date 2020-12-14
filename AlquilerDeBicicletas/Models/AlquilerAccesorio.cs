@@ -18,6 +18,7 @@ namespace AlquilerDeBicicletas.Models
         [Display(Name = "ID Alquiler de Accesorio")]
         public int alquilerAccesorioID { get; set; }*/
 
+        [Key]
         [Display(Name = "ID Alquiler")]
         public int alquilerID { get; set; }
         [Display(Name = "ID Accesorio")]

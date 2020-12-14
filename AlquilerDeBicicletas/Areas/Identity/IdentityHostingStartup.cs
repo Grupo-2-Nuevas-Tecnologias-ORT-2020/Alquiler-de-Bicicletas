@@ -22,7 +22,7 @@ namespace AlquilerDeBicicletas.Areas.Identity
 
                 services.AddDefaultIdentity<AlquilerDeBicicletasUsers>()
                     .AddEntityFrameworkStores<AlquilerDeBicicletasContext>();
-            });
+                });
         }
     }
 }

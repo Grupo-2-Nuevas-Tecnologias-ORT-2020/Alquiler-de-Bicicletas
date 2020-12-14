@@ -20,7 +20,7 @@ namespace AlquilerDeBicicletas.Context
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<TipoDeAccesorio> TiposDeAccesorio { get; set; }
         public DbSet<TipoDeBici> TiposDeBici { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
+        /*public DbSet<Usuario> Usuarios { get; set; }*/
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
